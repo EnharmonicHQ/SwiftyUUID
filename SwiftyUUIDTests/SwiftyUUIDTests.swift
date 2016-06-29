@@ -83,7 +83,7 @@ class SwiftyUUIDTests: XCTestCase {
     func testPerformanceVersion4UUID() {
         self.measure() {
             for _ in 1...10000 {
-                SwiftyUUID.Version4UUID()
+                _ = SwiftyUUID.Version4UUID()
             }
         }
     }
@@ -92,7 +92,7 @@ class SwiftyUUIDTests: XCTestCase {
         let uuid = SwiftyUUID.UUID()
         self.measure() {
             for _ in 1...1000 {
-                uuid.CanonicalString()
+                _ = uuid.CanonicalString()
             }
         }
     }
