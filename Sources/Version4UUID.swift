@@ -6,6 +6,13 @@
 //
 //
 
+#if os(Linux)
+    import Glibc
+    import SwiftShims //libbsd needs to be installed for this to work
+#else
+    import Darwin.C //arc4random_buf
+#endif
+
 /**
     Generate a new RFC 4122, version 4 (random) UUID.
     
@@ -15,7 +22,12 @@ public func Version4UUID() -> UUIDBytes {
     var uuid : [UInt8] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     uuid.withUnsafeMutableBufferPointer { (p : inout UnsafeMutableBufferPointer<UInt8>) -> () in
-        arc4random_buf(p.baseAddress, 16)
+        #if os(Linux)
+            _swift_stdlib_arc4random_buf(p.baseAddress, 16)
+        #else
+            arc4random_buf(p.baseAddress, 16)
+        #endif
+
     }
     
     // Set the version and variant fields as described in RFC4122 sections
