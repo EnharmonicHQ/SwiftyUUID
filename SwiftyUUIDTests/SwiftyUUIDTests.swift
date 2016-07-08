@@ -75,7 +75,7 @@ class SwiftyUUIDTests: XCTestCase {
         let uuidOnes = SwiftyUUID.UUID(bytes: uuid_allOnes)
         let uuidZeros = SwiftyUUID.UUID(bytes: uuid_allZeros)
         let uuidBookendOnes = SwiftyUUID.UUID(bytes: uuid_bookendOnes)
-        XCTAssertEqual(uuidOnes.CanonicalString(),  "ffffffff-ffff-ffff-ffff-ffffffffffff")
+        XCTAssertEqual(uuidOnes.CanonicalString(),  "ffffffff-ffff-ffff-ffff-ffffffffffff".uppercased())
         XCTAssertEqual(uuidZeros.CanonicalString(), "00000000-0000-0000-0000-000000000000")
         XCTAssertEqual(uuidBookendOnes.CanonicalString(), "10000000-0000-0000-0000-000000000001")
     }
