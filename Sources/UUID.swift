@@ -8,6 +8,8 @@
 
 /// An array of UUID bytes. When returned from functions you can assume it is a valid
 /// 16 byte UUID. If creating your own, ensure it is 16 bytes long.
+import Foundation
+
 public typealias UUIDBytes = [UInt8]
 
 /**
@@ -35,7 +37,7 @@ public struct UUID {
 extension UUID {
     /**
         Get a string representation of the UUID of the form
-        xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, where x is a lowercase
+        xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, where x is an uppercase
         hex digit.
     
         - returns: A string representation of the UUID.
@@ -48,7 +50,8 @@ extension UUID {
             bytes[12], bytes[13], bytes[14], bytes[15]
         ]
 
-        return String(format: "%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X", arguments: args)
+        let outString = String(format: "%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X", arguments: args)
+        return outString
     }
 }
 
